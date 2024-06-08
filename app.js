@@ -10,7 +10,7 @@ const initializerdbServer = async () => {
   try {
     database = await open({
       filename: databasePath,
-      driver: sqlite3.database,
+      driver: sqlite3.Database,
     })
     app.listen(3000, () =>
       console.log('Server Running at http://localhost:3000/'),
@@ -27,15 +27,15 @@ const haspriorityAndStatusProperities = requestQuery => {
     requestQuery.priority === undefined && requestQuery.status === undefined
   )
 }
-const hasprirority = requestQuery => {
-  return requestQuery.priority === undefined
+const hasPrirorityProperty = requestQuery => {
+  return requestQuery.priority !== undefined
 }
 const hasStatusProperty = requestQuery => {
   return requestQuery.status === undefined
 }
 //API 1
 app.get('/todos/', async (request, response) => {
-  let data = nul
+  let data = null
   let getTodoQuery = ''
   const {search_q = '', priority, status} = request.query
   switch (true) {
